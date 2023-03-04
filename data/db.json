@@ -1,0 +1,23 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Coca cola 1L",
+      "preco": 6,
+      "quantidade": 10,
+      "imagem": "https://sklep.aquick.pl/userdata/public/gfx/2447/Coca-Cola-0%2C85l.jpg"
+    },
+    {
+      "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "id": 4,
+      "nome": "Esfirra de frango",
+      "valor": "5",
+      "quantidade": "10"
+    }
+  ]
+}
