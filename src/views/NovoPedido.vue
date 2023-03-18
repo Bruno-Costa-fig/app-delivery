@@ -2,6 +2,8 @@
   <div>
     <NavbarVue />
     <h1 class="ms-5">Criar novo pedido</h1>
+    <CardItem v-for="item in carrinhoDeCompras" :key="item.id" :item="item"/>
+
     <v-form @submit.prevent="dialog = true">
       <v-container>
         <v-row>
@@ -15,7 +17,8 @@
             <v-text-field v-model="pedido.cliente.endereco.logradouro" label="Logradouro" required />
           </v-col>
           <v-col cols="12" md="6">
-            <v-text-field v-model="pedido.cliente.endereco.numero" type="number" label="Número" @input="onlyNumbers" required />
+            <v-text-field v-model="pedido.cliente.endereco.numero" type="number" label="Número" @input="onlyNumbers"
+              required />
           </v-col>
           <v-col cols="12" md="6">
             <v-text-field v-model="pedido.cliente.endereco.bairro" label="Bairro" required />
@@ -27,7 +30,8 @@
             <v-text-field v-model="pedido.cliente.endereco.referencia" label="Referência" />
           </v-col>
           <v-col cols="12">
-            <v-select :items="formaPagamentoList" item-title="titulo" item-value="value" v-model="pedido.formaPagamento" label="Forma pagamento" />
+            <v-select :items="formaPagamentoList" item-title="titulo" item-value="value" v-model="pedido.formaPagamento"
+              label="Forma pagamento" />
           </v-col>
         </v-row>
       </v-container>
@@ -48,15 +52,18 @@
 </template>
 
 <script>
+import CardItem from '../components/CardItem.vue';
 import NavbarVue from '../components/Navbar.vue'
 import Snackbar from '../components/Snackbar.vue'
 export default {
   components: {
     NavbarVue,
-    Snackbar
-  },
-  data(){
+    Snackbar,
+    CardItem
+},
+  data() {
     return {
+      carrinhoDeCompras: [],
       formaPagamentoList: [
         {
           titulo: "Cartão",
@@ -100,24 +107,38 @@ export default {
       const { value } = event.target;
       event.target.value = value.replace(/\D/g, '');
     },
-    criarPedido(){
-      if(!this.pedido.cliente.nome ||
-      !this.pedido.cliente.endereco.logradouro || 
-      !this.pedido.cliente.endereco.numero || 
-      !this.pedido.cliente.endereco.referencia || 
-      !this.pedido.cliente.endereco.bairro || 
-      !this.pedido.formaPagamento || 
-      !this.pedido.cliente.telefone){
+    criarPedido() {
+      if (!this.pedido.cliente.nome ||
+        !this.pedido.cliente.endereco.logradouro ||
+        !this.pedido.cliente.endereco.numero ||
+        !this.pedido.cliente.endereco.referencia ||
+        !this.pedido.cliente.endereco.bairro ||
+        !this.pedido.formaPagamento ||
+        !this.pedido.cliente.telefone) {
         this.snackbar.ativo = true
         this.dialog = false
         this.snackbar.mensagem = 'Por favor, preencha todos os campos!'
-      }else{
+      } else {
         // lógica para cadastrar o produto
         this.dialog = false
         this.snackbar.ativo = true
         this.snackbar.mensagem = 'Pedido cadastrado com sucesso!'
       }
     }
+  },
+
+  mounted(){
+    fetch('http://localhost:3000/carrinhoDeCompras', {
+        method: "GET",
+        headers: {"Content-type": "application/json;charset=UTF-8"},
+    })
+    .then(response => response.json())
+    .then(dados => {
+        this.carrinhoDeCompras = dados
+    }).catch(error => {
+        this.snackbar.ativo = true
+        this.snackbar.mensagem = error.message
+    })
   }
 }
 </script>
@@ -129,5 +150,4 @@ h1 {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
-  
 </style>

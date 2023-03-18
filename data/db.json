@@ -8,16 +8,69 @@
       "imagem": "https://sklep.aquick.pl/userdata/public/gfx/2447/Coca-Cola-0%2C85l.jpg"
     },
     {
-      "id": 2
+      "id": 2,
+      "nome": "Coca cola lata 350ml",
+      "preco": 3,
+      "quantidade": 7,
+      "imagem": "https://www.imagensempng.com.br/wp-content/uploads/2022/01/2442.png"
     },
     {
-      "id": 3
+      "id": 2,
+      "nome": "Coca cola lata 350ml",
+      "preco": 3,
+      "quantidade": 10,
+      "imagem": "https://www.imagensempng.com.br/wp-content/uploads/2022/01/2442.png"
     },
     {
       "id": 4,
       "nome": "Esfirra de frango",
-      "valor": "5",
-      "quantidade": "10"
+      "preco": 5,
+      "quantidade": 6,
+      "imagem": "https://chocomaxbolos.com.br/wp-content/uploads/2019/10/esfirra-frango-2.png"
+    },
+    {
+      "id": 5,
+      "nome": "Pizza Frango com Catupiry M",
+      "preco": 28,
+      "quantidade": 10,
+      "imagem": "https://sgnh.com.br/wp-content/uploads/2021/07/pizza_frango.png"
+    }
+  ],
+  "carrinhoDeCompras": [
+    {
+      "produtoId": 1,
+      "quantidade": 1,
+      "id": 1
+    },
+    {
+      "produtoId": 5,
+      "quantidade": 1,
+      "id": 2
+    },
+    {
+      "produtoId": 2,
+      "quantidade": "3",
+      "id": 3
+    },
+    {
+      "produtoId": 4,
+      "quantidade": 1,
+      "id": 4
+    },
+    {
+      "produtoId": 4,
+      "quantidade": "3",
+      "id": 5
+    },
+    {
+      "produtoId": 2,
+      "quantidade": 1,
+      "id": 6
+    },
+    {
+      "produtoId": 2,
+      "quantidade": "2",
+      "id": 7
     }
   ]
 }

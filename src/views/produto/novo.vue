@@ -8,7 +8,7 @@
           <v-text-field v-model="produto.nome" label="Nome do produto" required />
         </v-col>
         <v-col cols="12" md="6">
-          <v-text-field v-model="produto.valor" type="number" label="Valor do produto" required />
+          <v-text-field v-model="produto.preco" type="number" label="Valor do produto" required />
         </v-col>
         <v-col cols="12" md="6">
           <v-text-field v-model="produto.quantidade" type="number" label="Quantidade" required />
@@ -36,7 +36,7 @@ export default {
       produto: {
         id: 0,
         nome: "",
-        valor: 0,
+        preco: 0,
         quantidade: 0,
         imagem: ""
       },
@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     cadastrarProduto(){
-      if(!this.produto.nome || !this.produto.valor || !this.produto.quantidade || !this.produto.imagem){
+      if(!this.produto.nome || !this.produto.preco || !this.produto.quantidade || !this.produto.imagem){
         this.snackbar.ativo = true
         this.snackbar.mensagem = 'Por favor, preencha todos os campos!'
       }else{
