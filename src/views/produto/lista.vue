@@ -23,7 +23,7 @@ export default {
     }
   },
   mounted() {
-    fetch('http://localhost:3000/produtos', {
+    fetch('http://localhost:50005/produtos', {
       method: "GET",
       headers: {"Content-type": "application/json;charset=UTF-8"},
     })

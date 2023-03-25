@@ -50,7 +50,7 @@ export default {
                 /* 
                     vamos adicionar apenas o id do produto e a quantidade pedida
                 */
-                fetch('http://localhost:3000/carrinhoDeCompras', {
+                fetch('http://localhost:50005/carrinhoDeCompras', {
                     method: "POST",
                     headers: {"Content-type": "application/json;charset=UTF-8"},
                     body: JSON.stringify({
@@ -65,9 +65,7 @@ export default {
                     this.snackbar.mensagem = error.message
                 })
 
-                debugger
-
-                fetch('http://localhost:3000/produtos/' + this.produto.id, {
+                fetch('http://localhost:50005/produtos/' + this.produto.id, {
                     method: "PUT",
                     headers: {"Content-type": "application/json;charset=UTF-8"},
                     body: JSON.stringify({

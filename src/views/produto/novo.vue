@@ -53,7 +53,7 @@ export default {
         this.snackbar.mensagem = 'Por favor, preencha todos os campos!'
       }else{
         // lógica para cadastrar o produto
-        fetch('http://localhost:3000/produtos', {
+        fetch('http://localhost:50005/produtos', {
           method: "POST",
           headers: {"Content-type": "application/json;charset=UTF-8"},
           body: JSON.stringify(this.produto)

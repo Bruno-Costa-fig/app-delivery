@@ -2,7 +2,8 @@
   <div>
     <NavbarVue />
     <h1 class="ms-5">Criar novo pedido</h1>
-    <CardItem v-for="item in carrinhoDeCompras" :key="item.id" :item="item"/>
+
+    <TabelaCarrinho />
 
     <v-form @submit.prevent="dialog = true">
       <v-container>
@@ -52,18 +53,17 @@
 </template>
 
 <script>
-import CardItem from '../components/CardItem.vue';
+import TabelaCarrinho from '../components/TabelaCarrinho.vue';
 import NavbarVue from '../components/Navbar.vue'
 import Snackbar from '../components/Snackbar.vue'
 export default {
   components: {
     NavbarVue,
     Snackbar,
-    CardItem
+    TabelaCarrinho
 },
   data() {
     return {
-      carrinhoDeCompras: [],
       formaPagamentoList: [
         {
           titulo: "Cartão",
@@ -127,19 +127,7 @@ export default {
     }
   },
 
-  mounted(){
-    fetch('http://localhost:3000/carrinhoDeCompras', {
-        method: "GET",
-        headers: {"Content-type": "application/json;charset=UTF-8"},
-    })
-    .then(response => response.json())
-    .then(dados => {
-        this.carrinhoDeCompras = dados
-    }).catch(error => {
-        this.snackbar.ativo = true
-        this.snackbar.mensagem = error.message
-    })
-  }
+ 
 }
 </script>
 
