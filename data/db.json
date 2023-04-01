@@ -29,5 +29,24 @@
       "id": 5
     }
   ],
-  "carrinhoDeCompras": []
+  "carrinhoDeCompras": [],
+  "pedidos": [
+    {
+      "cliente": {
+        "nome": "Bruno",
+        "telefone": "88888888",
+        "endereco": {
+          "logradouro": "Rua exemplo",
+          "numero": "21",
+          "bairro": "Jardim",
+          "complemento": "casa",
+          "referencia": "segunda rua"
+        }
+      },
+      "listaProdutos": [],
+      "valorTotal": 31,
+      "formaPagamento": "pix",
+      "id": 2
+    }
+  ]
 }

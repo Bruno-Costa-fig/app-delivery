@@ -3,7 +3,7 @@
     <NavbarVue />
     <h1 class="ms-5">Criar novo pedido</h1>
 
-    <TabelaCarrinho />
+    <TabelaCarrinho @handleValorTotal="handleValorTotal" />
 
     <v-form @submit.prevent="dialog = true">
       <v-container>
@@ -102,6 +102,12 @@ export default {
     }
   },
   methods: {
+    handleValorTotal(valorTotal){
+      this.pedido.valorTotal = valorTotal
+    },
+    handleListaDeCompras(listaDeCompras){
+      this.pedido.listaProdutos = listaDeCompras
+    },
     onlyNumbers(event) {
       // permite apenas números no campo de número do endereço
       const { value } = event.target;
@@ -119,10 +125,20 @@ export default {
         this.dialog = false
         this.snackbar.mensagem = 'Por favor, preencha todos os campos!'
       } else {
-        // lógica para cadastrar o produto
-        this.dialog = false
-        this.snackbar.ativo = true
-        this.snackbar.mensagem = 'Pedido cadastrado com sucesso!'
+        fetch("http://localhost:50005/pedidos", {
+          method: "POST",
+          headers: {"Content-type": "application/json;charset=UTF-8"},
+          body: JSON.stringify(this.pedido)
+        }).then(() => {
+          this.dialog = false
+          this.snackbar.ativo = true
+          this.snackbar.mensagem = 'Pedido cadastrado com sucesso!'
+        }).catch(() => {
+          this.dialog = false
+          this.snackbar.ativo = true
+          this.snackbar.mensagem = 'Não foi possível cadastrar o pedido!'
+        })
+
       }
     }
   },

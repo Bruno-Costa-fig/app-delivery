@@ -55,7 +55,8 @@ export default {
                     headers: {"Content-type": "application/json;charset=UTF-8"},
                     body: JSON.stringify({
                         produtoId: this.produto.id,
-                        quantidade: this.quantidade
+                        quantidade: this.quantidade,
+                        valor: this.quantidade * this.produto.preco,
                     })
                 }).then(() => {
                     this.snackbar.ativo = true,

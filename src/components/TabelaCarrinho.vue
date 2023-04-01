@@ -15,6 +15,7 @@
                 @atualizarLista="atualizarLista"
             />
         </table>
+        <h3 v-if="listaCarrinhoDeCompras.length > 0" class="mt-5">Valor Total: {{ valorTotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}) }}</h3>
     </div>
 </template>
 <script>
@@ -26,6 +27,27 @@ export default {
     data(){
         return {
             listaCarrinhoDeCompras: []
+        }
+    },
+    watch: {
+        listaCarrinhoDeCompras: function(novoValor){
+            this.$emit("handleListaDeCompras", novoValor) 
+            return novoValor 
+        },
+        valorTotal: function(novoValor){
+            this.$emit("handleValorTotal", novoValor)
+            return novoValor
+        }
+    },
+    computed: {
+        valorTotal(){
+            let total = 0
+            this.listaCarrinhoDeCompras.map((item) => { 
+                // debugger
+                total += Number.parseFloat(item.valor)
+            })          
+
+            return total
         }
     },
     methods: {
@@ -52,6 +74,7 @@ export default {
     .container-tabela {
         display: flex;
         justify-content: center;
+        flex-direction: column;
         align-items: center;
         width: 100%;
         margin-bottom: 20px;
